@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">TuDu</string>
+    <string name="date_picker_title">Chose date</string>
+</resources>
