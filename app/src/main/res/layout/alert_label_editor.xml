@@ -54,6 +54,15 @@
                 android:textColor="@color/colorPrimary"
                 android:textSize="24sp" />
 
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="callTimePicker"
+                android:text="Time"
+                android:textColor="@color/colorPrimary"
+                android:textSize="24sp" />
+
         </LinearLayout>
 
     </LinearLayout>
@@ -64,6 +73,17 @@
         android:layout_weight="1"
         android:orientation="horizontal"
         android:weightSum="2">
+
+        <Button
+            android:id="@+id/cancel"
+            style="@style/Widget.AppCompat.Button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Cancel"
+            android:textColor="@color/colorPrimary"
+            android:textSize="24sp"
+            android:textStyle="italic" />
 
         <Button
             android:id="@+id/add_task"
@@ -77,17 +97,6 @@
             android:layout_weight="1"
             android:onClick="deleteFromList"
             android:text="OK"
-            android:textColor="@color/colorPrimary"
-            android:textSize="24sp"
-            android:textStyle="italic" />
-
-        <Button
-            android:id="@+id/cancel"
-            style="@style/Widget.AppCompat.Button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Cancel"
             android:textColor="@color/colorPrimary"
             android:textSize="24sp"
             android:textStyle="italic" />
