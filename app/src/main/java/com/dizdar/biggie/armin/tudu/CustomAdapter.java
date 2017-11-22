@@ -36,12 +36,26 @@ public class CustomAdapter extends ArrayAdapter<TaskItem>{
         String name = getItem(position).getName();
         String description = getItem(position).getDescription();
         String date = getItem(position).getDate();
+        String hour = Integer.toString(getItem(position).getHour());
+        String minute = Integer.toString(getItem(position).getMinute());
+
 
 
         // Initializing TextView widgets.
         TextView nameOfTask = customView.findViewById(R.id.custom_name);
         TextView descriptionOfTask = customView.findViewById(R.id.custom_description);
         TextView dateOfTask = customView.findViewById(R.id.custom_date);
+        TextView timeOfTask = customView.findViewById(R.id.custom_time);
+
+        //Populating TextView widgets inside of ListView with Strings from ArrayList objects.
+        nameOfTask.setText(name);
+        descriptionOfTask.setText(description);
+        dateOfTask.setText(date);
+        timeOfTask.setText(hour + ":" + minute);
+
+
+
+
         // Initializing Delete Button widget and setting onClick action to remove
         Button deletebutton = customView.findViewById(R.id.DeleteButton);
         deletebutton.setOnClickListener(new View.OnClickListener() {
@@ -50,10 +64,9 @@ public class CustomAdapter extends ArrayAdapter<TaskItem>{
                 remove(getItem(position));
             }
         });
-        //Populating TextView widgets inside of ListView with Strings from ArrayList objects.
-            nameOfTask.setText(name);
-            descriptionOfTask.setText(description);
-            dateOfTask.setText(date);
+
+
+
 
             return customView;
     }

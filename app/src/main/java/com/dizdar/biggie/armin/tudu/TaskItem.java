@@ -3,7 +3,7 @@ package com.dizdar.biggie.armin.tudu;
 
 import java.io.Serializable;
 
-public class TaskItem implements Serializable{
+class TaskItem implements Serializable{
     /*
     Model of Task
     Declaring 3 fields of type String
@@ -11,7 +11,8 @@ public class TaskItem implements Serializable{
     private String name;
     private String description;
     private String date;
-    private String time;
+    private int hour;
+    private int minute;
 
 
 
@@ -21,26 +22,35 @@ public class TaskItem implements Serializable{
     @param description.
     @param date.
     */
-    public TaskItem(String name, String description,String date) {
+TaskItem(String name, String description,String date, int hour, int minute) {
         this.name = name;
         this.description = description;
         this.date = date;
-
+        this.hour = hour;
+        this.minute = minute;
+    }
+    //Getter for hour.
+     int getHour(){
+        return hour;
     }
 
+    //Getter for minute.
+    int getMinute(){
+        return minute;
+    }
 
-    // Getter for name;
+    // Getter for name.
     public String getName() {
         return name;
     }
 
     //Getter for date
-    public String getDate(){
+    String getDate(){
         return date;
     }
 
     //Getter for description
-    public String getDescription() {
+     String getDescription() {
         return description;
     }
 
@@ -49,22 +59,21 @@ public class TaskItem implements Serializable{
 
     //Setter for name
     //@param name
-    public void setName(String name) {
+    void setName(String name) {
         this.name = name;
     }
 
     //Setter for description
     //@param description
-    public void setDescription(String description) {
+    void setDescription(String description) {
         this.description = description;
     }
 
     //Setter for date.
     //@param date.
-    public void setDate(String date){
+     void setDate(String date){
         this.date = date;
     }
-
 
 
 

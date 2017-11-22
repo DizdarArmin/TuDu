@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity { // Beginning of MainActivity body.
@@ -25,6 +26,8 @@ public class MainActivity extends AppCompatActivity { // Beginning of MainActivi
     String pickedDate = ""; //Date variable. Value of picked date. Empty by default.
     String addedName; // Name of task variable.
     String addedDescription; // Description of task variable.
+    int pickedHour;
+    int pickedMinute;
 
 
     @Override
@@ -74,8 +77,8 @@ public class MainActivity extends AppCompatActivity { // Beginning of MainActivi
                     addedDescription = dialogDescription.getText().toString(); // and storing them in fields.
 
 
-                    if (addedName + addedDescription + pickedDate !="") { // Checking if user input exists to proceed.
-                            itemToAdd = new TaskItem(addedName, addedDescription, pickedDate); // Making object which contains 3 strings.
+                    if (addedName + addedDescription + pickedDate !="" &&  pickedHour + pickedMinute != 0 ) { // Checking if user input exists to proceed.
+                            itemToAdd = new TaskItem(addedName, addedDescription, pickedDate, pickedHour , pickedMinute); // Making object which contains 3 strings and 2 integers.
                             collection.add(itemToAdd); //Adding object to ArrayList
                             arrayAdapter.notifyDataSetChanged(); // Updating the view.
                             alertDialog.cancel(); //Exits from pop up window
@@ -97,8 +100,12 @@ public class MainActivity extends AppCompatActivity { // Beginning of MainActivi
             });
 
         }
-        if (id == R.id.check) { // Menu button for notifying how many tasks you have for today.
-            Toast.makeText(this, collection.tasksForToday(),Toast.LENGTH_LONG).show();
+        if (id == R.id.checkTasks) { // Menu button for notifying how many tasks you have for today.
+            String taskForToday = collection.tasksForToday();
+            String taskNextSixHours = collection.tasksInNextSixHours();
+
+            String toToast = (taskForToday + "\n" + taskNextSixHours);
+            Toast.makeText(this, toToast ,Toast.LENGTH_LONG).show();
         }
         return super.onOptionsItemSelected(item);
     }
@@ -132,8 +139,31 @@ public class MainActivity extends AppCompatActivity { // Beginning of MainActivi
 
     }
 
+    public void callTimePicker(View view) { // Method for displaying pop up window to chose date.
+        final AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+        LayoutInflater inflater = this.getLayoutInflater();
+        final View timeView = inflater.inflate(R.layout.time_dialog, null);
+        dialogBuilder.setView(timeView);
+        final AlertDialog alertDialog = dialogBuilder.create();
+        alertDialog.show();
 
 
+        final TimePicker tp = timeView.findViewById(R.id.timePicker);
+        Button addButton = timeView.findViewById(R.id.add);
+        addButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                pickedHour = tp.getHour();
+                pickedMinute = tp.getMinute();
+                String toDisplay = ("You have set your time to: " + pickedHour +":"+ pickedMinute);
+                Toast.makeText(getApplicationContext(),toDisplay,Toast.LENGTH_LONG).show();
+                alertDialog.cancel();
+
+
+            }
+        });
+
+    }
 
 
 
